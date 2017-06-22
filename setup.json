@@ -1,0 +1,11 @@
+[
+  {
+    "name": "System Triage",
+    "description": "To be triaged, analyzed, & remedated.",
+    "columns": [
+      "Untriaged",
+      "Triaged",
+      "Remeidated"
+    ]
+  }
+]
