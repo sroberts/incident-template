@@ -7,22 +7,56 @@ import json
 
 token = os.environ['GH_TOKEN']
 
+server = "https://api.github.com"
 project = "sroberts/test"
-project_url = "https://api.github.com/repos/{}/projects".format(project)
+
+h = {
+    'Authorization': 'token {}'.format(token),
+    'Accept': 'application/vnd.github.inertia-preview+json'
+}
+
+
+def create_board(name, body, columns=[]):
+    """Creates a GitHub Project Board"""
+
+    project_url = "{}/repos/{}/projects".format(server, project)
+
+    board_content = json.dumps({
+        "name": name,
+        "body": body
+    })
+
+    try:
+        r = requests.post(project_url, headers=h, data=board_content)
+        html_url = r.json()['html_url']
+        board_id = r.json()['id']
+    except:
+        raise
+
+    print("Created board {}: {}".format(name, html_url))
+
+    for column in columns:
+        print("  - Creating column: {}".format(column))
+
+        url = "{}/projects/{}/columns".format(server, board_id)
+        column = json.dumps({"name": column})
+
+        try:
+            r = requests.post(url, headers=h, data=column)
+        except:
+            raise
+
+    return html_url
+
 
 def main():
-    print("Setting Up Project: {}".format(project_url))
+    """Where the business ets done"""
+    print("Setting Up Project: {}".format(project))
 
-    h = {'Authorization': 'token {}'.format(token), 'Accept': 'application/vnd.github.inertia-preview+json'}
+    setup = json.loads(open('setup.json', 'r').read())
 
-    project_systems_triage = {
-          "name": "System Triage",
-          "body": "To be triaged, analyzed, remedated, and returned to service."
-    }
-
-    r = requests.post(project_url, headers=h, data=json.dumps(project_systems_triage))
-
-    print(r.text)
+    for board in setup:
+        create_board(board['name'], board['description'], board['columns'])
 
 if __name__ == '__main__':
     main()
