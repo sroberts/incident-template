@@ -7,5 +7,40 @@
       "Triaged",
       "Remeidated"
     ]
+  },
+  {
+    "name": "System Forensics",
+    "description": "Systems that need full analysis.",
+    "columns": [
+      "Backlog",
+      "Live Response Taken",
+      "Forensicated",
+      "Remdiated",
+      "Recovered"
+    ]
+  },
+  {
+    "name": "Indicator Development",
+    "description": "Developing & managing IOCs.",
+    "columns": [
+      "Backlog",
+      "Enriched",
+      "COA: Discovery",
+      "Detection Created",
+      "COA: Detection Deployed",
+      "Detection Deprecated"
+    ]
+  },
+  {
+    "name": "Intelligence Product Development",
+    "description": "Managing the development of intelligence products.",
+    "columns": [
+      "Planned",
+      "Analyzed",
+      "Drafted",
+      "Edited",
+      "Released",
+      "Feedback Collected"
+    ]
   }
 ]
