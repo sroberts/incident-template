@@ -4,6 +4,7 @@
 import requests
 import os
 import json
+import random
 
 token = os.environ['GH_TOKEN']
 
@@ -15,6 +16,10 @@ h = {
     'Accept': 'application/vnd.github.inertia-preview+json'
 }
 
+words = open('/usr/share/dict/words').readlines()
+
+def generate_codename():
+    return "{}-{}".format(random.choice(words).strip(), random.choice(words).strip())
 
 def create_board(name, body, columns=[]):
     """Creates a GitHub Project Board"""
