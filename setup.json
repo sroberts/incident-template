@@ -1,11 +1,11 @@
 [
   {
     "name": "System Triage",
-    "description": "To be triaged, analyzed, & remedated.",
+    "description": "To be triaged, analyzed, & remediated.",
     "columns": [
       "Untriaged",
       "Triaged",
-      "Remeidated"
+      "Remediated"
     ]
   },
   {
@@ -15,7 +15,7 @@
       "Backlog",
       "Live Response Taken",
       "Forensicated",
-      "Remdiated",
+      "Remediated",
       "Recovered"
     ]
   },
